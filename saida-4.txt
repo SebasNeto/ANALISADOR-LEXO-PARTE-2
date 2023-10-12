@@ -1,0 +1,78 @@
+TOKEN: KW_INT
+ID: minhaVar
+TOKEN: =
+TOKEN: LIT_INT 123
+TOKEN: ;
+TOKEN: KW_INT
+ID: minhaFuncao
+TOKEN: (
+TOKEN: )
+TOKEN: {
+TOKEN: KW_INT
+ID: funcaoVar
+TOKEN: =
+TOKEN: LIT_INT 456
+TOKEN: ;
+TOKEN: IF
+TOKEN: (
+ID: funcaoVar
+TOKEN: EQ
+TOKEN: LIT_INT 456
+TOKEN: )
+TOKEN: {
+ID: funcaoVar
+TOKEN: =
+ID: funcaoVar
+TOKEN: +
+TOKEN: LIT_INT 1
+TOKEN: ;
+TOKEN: }
+TOKEN: ELSE
+TOKEN: {
+ID: funcaoVar
+TOKEN: =
+ID: funcaoVar
+TOKEN: -
+TOKEN: LIT_INT 1
+TOKEN: ;
+TOKEN: }
+TOKEN: }
+TOKEN: KW_INT
+ID: outraFuncao
+TOKEN: (
+TOKEN: KW_INT
+ID: parametro1
+TOKEN: )
+TOKEN: {
+TOKEN: KW_RETURN
+ID: parametro1
+TOKEN: *
+TOKEN: LIT_INT 2
+TOKEN: ;
+TOKEN: }
+TOKEN: KW_INT
+ID: main
+TOKEN: (
+TOKEN: )
+TOKEN: {
+TOKEN: KW_INT
+ID: resultado
+TOKEN: =
+TOKEN: LIT_INT 78
+TOKEN: ;
+ID: resultado
+TOKEN: =
+ID: outraFuncao
+TOKEN: (
+TOKEN: LIT_INT 10
+TOKEN: )
+TOKEN: ;
+TOKEN: KW_RETURN
+TOKEN: LIT_INT 0
+TOKEN: ;
+TOKEN: }
+
+Tabela de Símbolos:
+Slot 3: ID = resultado, Tipo = 283
+Slot 26: ID = minhaVar, Tipo = 283
+Slot 53: ID = funcaoVar, Tipo = 283
