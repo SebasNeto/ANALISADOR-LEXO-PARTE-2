@@ -1,0 +1,6 @@
+Erro sintático na linha 2, próximo ao token 'real': syntax error
+TOKEN: KW_INT
+ID: minhaVar
+TOKEN: =
+TOKEN: LIT_INT 1234
+TOKEN: KW_REAL

@@ -1,74 +1,74 @@
-// symbol_table.c
+// simboloTabela.c
 
 #include "tabelaSimbolos.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 
-Symbol* symbol_table[TABLE_SIZE];
+Symbol* simboloTabela[TABLE_SIZE];
 
-void init_symbol_table() {
+void iniciarTabela() {
     for(int i = 0; i < TABLE_SIZE; i++) {
-        symbol_table[i] = NULL;
+        simboloTabela[i] = NULL;
     }
 }
 
 
 unsigned int hash(char* key) {
-    unsigned int value = 0;
+    unsigned int valor = 0;
     for (char* p = key; *p != '\0'; p++) {
-        value = value * 37 + *p;
+        valor = valor * 37 + *p;
     }
-    return value % TABLE_SIZE;
+    return valor % TABLE_SIZE;
 }
 
-void insert_symbol(char* identifier, int type) {
+void inserirSimbolo(char* identifier, int type) {
     unsigned int slot = hash(identifier);
-    Symbol* new_symbol = (Symbol*) malloc(sizeof(Symbol));
-    new_symbol->identifier = strdup(identifier);
-    new_symbol->type = type;
-    new_symbol->next = NULL;
+    Symbol* novoSimbolo = (Symbol*) malloc(sizeof(Symbol));
+    novoSimbolo->identifier = strdup(identifier);
+    novoSimbolo->type = type;
+    novoSimbolo->proximo = NULL;
 
     // Se o slot estiver vazio, insira diretamente
-    if (symbol_table[slot] == NULL) {
-        symbol_table[slot] = new_symbol;
+    if (simboloTabela[slot] == NULL) {
+        simboloTabela[slot] = novoSimbolo;
     } else {
         // Caso contrário, anexe ao final da lista no slot
-        Symbol* current = symbol_table[slot];
-        while (current->next != NULL) {
-            current = current->next;
+        Symbol* linhaCorrente = simboloTabela[slot];
+        while (linhaCorrente->proximo != NULL) {
+            linhaCorrente = linhaCorrente->proximo;
         }
-        current->next = new_symbol;
+        linhaCorrente->proximo = novoSimbolo;
     }
 }
 
 
-Symbol* find_symbol(char* identifier) {
+Symbol* retornaSimbolo(char* identifier) {
     unsigned int slot = hash(identifier);
-    Symbol* current = symbol_table[slot];
-    while (current != NULL) {
-        if (strcmp(current->identifier, identifier) == 0) {
-            return current;
+    Symbol* linhaCorrente = simboloTabela[slot];
+    while (linhaCorrente != NULL) {
+        if (strcmp(linhaCorrente->identifier, identifier) == 0) {
+            return linhaCorrente;
         }
-        current = current->next;
+        linhaCorrente = linhaCorrente->proximo;
     }
     return NULL;
 }
 
-void remove_symbol(char* identifier) {
+void removerSimbolo(char* identifier) {
     unsigned int slot = hash(identifier);
-    free(symbol_table[slot]->identifier);
-    free(symbol_table[slot]);
-    symbol_table[slot] = NULL;
+    free(simboloTabela[slot]->identifier);
+    free(simboloTabela[slot]);
+    simboloTabela[slot] = NULL;
 }
 
-void print_symbol_table() {
+void print_simboloTabela() {
     printf("Tabela de Símbolos:\n");
     for (int i = 0; i < TABLE_SIZE; i++) {
-        Symbol* current = symbol_table[i];
-        while (current != NULL) {
-            printf("Slot %d: ID = %s, Tipo = %d\n", i, current->identifier, current->type);
-            current = current->next;
+        Symbol* linhaCorrente = simboloTabela[i];
+        while (linhaCorrente != NULL) {
+            printf("Slot %d: ID = %s, Tipo = %d\n", i, linhaCorrente->identifier, linhaCorrente->type);
+            linhaCorrente = linhaCorrente->proximo;
         }
     }
 }

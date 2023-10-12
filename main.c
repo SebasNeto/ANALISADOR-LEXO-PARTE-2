@@ -8,7 +8,7 @@ extern FILE *yyout;
 
 int main(int argc, char **argv)
 {
-    init_symbol_table();
+    iniciarTabela();
     FILE *file;
     yyin = file;
     yyout = fopen("symbol_table.lex", "w+");
@@ -17,6 +17,6 @@ int main(int argc, char **argv)
     file = fopen(argv[1], "r");
     yyin= file;
     yyparse();
-    print_symbol_table();
+    print_simboloTabela();
     return 0;
 }

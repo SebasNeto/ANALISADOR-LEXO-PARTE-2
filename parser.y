@@ -50,11 +50,11 @@ decl: decl_var
 
 decl_var: espec_tipo var '=' init_val ';'
 {
-    Symbol* sym = find_symbol($2);
+    Symbol* sym = retornaSimbolo($2);
     if (sym) {
         sym->type = $1; 
     }else{
-        insert_symbol($2,$1);
+        inserirSimbolo($2,$1);
     }
 }
 
@@ -73,7 +73,7 @@ literal_list: literal_list LIT_INT
             ;
 decl_func: espec_tipo ID '(' params ')' com_comp
          {
-             insert_symbol($2, $1);
+             inserirSimbolo($2, $1);
          };
 
 
@@ -94,7 +94,7 @@ lista_param: lista_param ',' param
 
 param: espec_tipo var
       {
-          insert_symbol($2, $1);
+          inserirSimbolo($2, $1);
       };
 
 
@@ -197,6 +197,7 @@ int getLineNumber(void) {
 }
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Erro sintático na linha %d: %s\n", getLineNumber(), s);
+    fprintf(stderr, "Erro sintático na linha %d, próximo ao token '%s': %s\n", getLineNumber(), yytext, s);
     exit(3);
 }
+

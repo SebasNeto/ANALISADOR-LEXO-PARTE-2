@@ -6,17 +6,18 @@
 typedef struct Symbol {
     char* identifier;
     int type;
-    struct Symbol* next; // Aponta para o próximo símbolo na lista
+    struct Symbol* proximo; // Aponta para o próximo símbolo na lista
 } Symbol;
 
 
 #define TABLE_SIZE 100
-void init_symbol_table();
+void iniciarTabela();
+unsigned int hash(char* key);
 // Protótipos das funções
-void insert_symbol(char* identifier, int type);
-Symbol* find_symbol(char* identifier);
-void remove_symbol(char* identifier);
+void inserirSimbolo(char* identifier, int type);
+Symbol* retornaSimbolo(char* identifier);
+void removerSimbolo(char* identifier);
 
 
-void print_symbol_table();
+void print_simboloTabela() ;
 #endif // SYMBOL_TABLE_H

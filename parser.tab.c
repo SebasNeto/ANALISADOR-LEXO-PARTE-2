@@ -1243,11 +1243,11 @@ yyreduce:
   case 7: /* decl_var: espec_tipo var '=' init_val ';'  */
 #line 52 "parser.y"
 {
-    Symbol* sym = find_symbol((yyvsp[-3].strValue));
+    Symbol* sym = retornaSimbolo((yyvsp[-3].strValue));
     if (sym) {
         sym->type = (yyvsp[-4].intValue); 
     }else{
-        insert_symbol((yyvsp[-3].strValue),(yyvsp[-4].intValue));
+        inserirSimbolo((yyvsp[-3].strValue),(yyvsp[-4].intValue));
     }
 }
 #line 1254 "parser.tab.c"
@@ -1256,7 +1256,7 @@ yyreduce:
   case 18: /* decl_func: espec_tipo ID '(' params ')' com_comp  */
 #line 75 "parser.y"
          {
-             insert_symbol((yyvsp[-4].strValue), (yyvsp[-5].intValue));
+             inserirSimbolo((yyvsp[-4].strValue), (yyvsp[-5].intValue));
          }
 #line 1262 "parser.tab.c"
     break;
@@ -1282,7 +1282,7 @@ yyreduce:
   case 27: /* param: espec_tipo var  */
 #line 96 "parser.y"
       {
-          insert_symbol((yyvsp[0].strValue), (yyvsp[-1].intValue));
+          inserirSimbolo((yyvsp[0].strValue), (yyvsp[-1].intValue));
       }
 #line 1288 "parser.tab.c"
     break;
@@ -1495,6 +1495,7 @@ int getLineNumber(void) {
 }
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Erro sintático na linha %d: %s\n", getLineNumber(), s);
+    fprintf(stderr, "Erro sintático na linha %d, próximo ao token '%s': %s\n", getLineNumber(), yytext, s);
     exit(3);
 }
+

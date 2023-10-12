@@ -1,0 +1,22 @@
+int minhaVar = 1234
+real minhaFuncao() {
+    int funcaoVar = 456;
+    if (funcaoVar == 456)
+        funcaoVar = funcaoVar + 1
+    else {
+        funcaoVar = funcaoVar - 1;
+    }
+    void voidFunction(int a, real b) { // função definida dentro de outra função
+        return a + b;
+    }
+}
+
+int outraFuncao(int parametro1, , int parametro2) { // vírgula extra
+    return parametro1 * 2;
+}
+
+int main( {
+    int resultado = 78;
+    resultado = outraFuncao(10, 20;
+    return 0;
+}
